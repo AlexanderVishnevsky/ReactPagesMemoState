@@ -6,7 +6,7 @@ const BackButton = () => {
     const router = useRouter()
     return(
 
-    <Button variant="contained" onClick={() => router.push('/')}>
+    <Button variant="contained" color={'primary'} onClick={() => router.push('/')}>
         Go to the main page
     </Button>
 ) }

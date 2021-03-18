@@ -1,25 +1,23 @@
 import * as React from 'react';
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import {TextField} from "@material-ui/core";
 import BackButton from "../components/BackButton";
+import UniversalLayout from "../components/UniversalLayout";
 
 
 export default function Page1() {
-  return (
-      <Container maxWidth="sm">
-        <Box>
-          <Typography variant="h4" component="h1" gutterBottom>
-            TextField Form
-          </Typography>
-          <form style={{width: '25ch'}} noValidate autoComplete="off">
-            <TextField id="standard-basic" label="Standard"/>
-            <TextField id="filled-basic" label="Filled" variant="filled"/>
-            <TextField id="outlined-basic" label="Outlined" variant="outlined"/>
-          </form>
-          <BackButton/>
-        </Box>
-      </Container>
-  );
+    return (
+        <UniversalLayout>
+            <Typography variant="h4" component="h1" gutterBottom>
+                TextField Form
+            </Typography>
+            <form style={{width: '25ch'}} noValidate >
+                <TextField id="standard-basic" label="First Name"variant="outlined" autoComplete="none"/>
+                <TextField id="filled-basic" label="Last Name" variant="outlined" autoComplete="none"/>
+                <TextField id="outlined-basic" label="Address" variant="outlined" autoComplete="none"/>
+            </form>
+            <BackButton/>
+
+        </UniversalLayout>
+    );
 }

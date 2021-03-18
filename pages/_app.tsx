@@ -6,6 +6,7 @@ import {ThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import {useRouter} from "next/router";
+import UniversalLayout from "../components/UniversalLayout";
 
 /**
  * Список роутов (SSR-страниц), которые могут быть закэшированы.
@@ -38,7 +39,9 @@ export default function MyApp({Component, pageProps}: AppProps) {
             const newCachedObject = {
                 key: router.asPath,
                 component: (
-                    <MemoComponent {...pageProps}/>
+                    <UniversalLayout>
+                        <MemoComponent {...pageProps}/>
+                    </UniversalLayout>
                 ),
             };
             // Либо создаем новый массив с кэшированными страницами, либо добавляем в существующий
@@ -72,10 +75,12 @@ export default function MyApp({Component, pageProps}: AppProps) {
                 ))}
 
                 {!isRouteCouldBeCached && (
-                    <Component
-                        {...pageProps}
+                    <UniversalLayout>
+                        <Component
+                            {...pageProps}
 
-                    />
+                        />
+                    </UniversalLayout>
                 )}
             </ThemeProvider>
         </>
