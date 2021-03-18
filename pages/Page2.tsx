@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import {FormControlLabel, FormGroup, Switch} from "@material-ui/core";
-import BackButton from "../components/BackButton";
+import CustomButton from "../components/CustomButton";
 import UniversalLayout from "../components/UniversalLayout";
 
 export default function Page2() {
@@ -37,7 +37,7 @@ export default function Page2() {
                 />
                 <FormControlLabel control={<Switch/>} label="Uncontrolled"/>
             </FormGroup>
-            <BackButton/>
+            <CustomButton/>
         </UniversalLayout>
     );
 }

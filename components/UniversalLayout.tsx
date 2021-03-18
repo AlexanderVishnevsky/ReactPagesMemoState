@@ -1,5 +1,3 @@
-import Container from "@material-ui/core/Container";
-import {Grid} from "@material-ui/core";
 import {ReactNode} from "react";
 import {useStyles} from "../styles/UniversalLayoutStyle";
 
@@ -13,7 +11,7 @@ const UniversalLayout = ({children}: { children: ReactNode }) => {
             {/*    direction="column"*/}
             {/*    alignItems="center" spacing={2}*/}
             {/*>*/}
-                {children}
+            {children}
             {/*</Grid>*/}
         </div>
     )
