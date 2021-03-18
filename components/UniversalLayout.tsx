@@ -5,14 +5,7 @@ const UniversalLayout = ({children}: { children: ReactNode }) => {
     const classes = useStyles();
     return (
         <div className={classes.layout}>
-            {/*<Grid*/}
-            {/*    container*/}
-            {/*    justify="center"*/}
-            {/*    direction="column"*/}
-            {/*    alignItems="center" spacing={2}*/}
-            {/*>*/}
             {children}
-            {/*</Grid>*/}
         </div>
     )
 }

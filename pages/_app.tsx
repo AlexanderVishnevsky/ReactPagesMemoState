@@ -7,34 +7,39 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
 import {useRouter} from "next/router";
 import UniversalLayout from "../components/UniversalLayout";
+import StartupHint from "../components/StartupHint";
 
 /**
- * Список роутов (SSR-страниц), которые могут быть закэшированы.
- * Все страницы кэшировать не надо, а нужно делать это осознанно
- * Для кэширования определенной страницы необходимо просто добавить сюда нужный роут
+ * List of routes (SSR pages) that can be cached.
+ * All pages do not need to be cached, but you need to do it deliberately
+ * To cache a specific page, you just need to add the desired route here
  */
 const ROUTES_CAN_BE_CACHED: Array<string> = ['/Page1', '/Page2', '/Page3'];
 
 export default function MyApp({Component, pageProps}: AppProps) {
     const router = useRouter();
-
+    const [showStartupHint, setShowStartupHint] = React.useState<boolean>(true);
     const retainedComponents = useRef<Array<{ key: string; component: JSX.Element }> | undefined>(undefined);
     const isRouteCouldBeCached = ROUTES_CAN_BE_CACHED.includes(router.asPath);
 
+    const handleChangeStartupHint = (): void => {
+        setShowStartupHint((prevState: boolean) => !prevState);
+    }
+
     /**
-     * Функция кэширования страниц
+     * Page caching function
      * ---------------------------
-     * Проверка необходимо ли закэшировать страницу
-     * Для этого при смене роута он проверяется возможность кэширования
+     * Check if the page needs to be cached
+     * To do this, when changing a route, it checks the possibility of caching
      */
     if (isRouteCouldBeCached) {
-        // Проверка была ли ранее закэширована страница с таким роутом
+        // Checking whether a page with such a route has been previously cached
         const isPageAlreadyCached: boolean = Array.isArray(retainedComponents.current)
             ? retainedComponents.current.some((i) => i.key === router.asPath)
             : false;
-        // Если такой страницы нет в кэше, то добавляем её
+        // If there is no such page in the cache, then add it
         if (!isPageAlreadyCached) {
-            // Мемоизированный компонент
+            // Memoized component
             const MemoComponent = memo(Component);
             const newCachedObject = {
                 key: router.asPath,
@@ -44,7 +49,7 @@ export default function MyApp({Component, pageProps}: AppProps) {
                     </UniversalLayout>
                 ),
             };
-            // Либо создаем новый массив с кэшированными страницами, либо добавляем в существующий
+            // Either we create a new array with cached pages, or add to the existing one
             switch (retainedComponents.current) {
                 case undefined:
                     retainedComponents.current = new Array(newCachedObject);
@@ -58,7 +63,7 @@ export default function MyApp({Component, pageProps}: AppProps) {
     return (
         <>
             <Head>
-                <title>My page</title>
+                <title>React Memo State</title>
                 <meta name="viewport" content="initial-scale=1, width=device-width"/>
             </Head>
             <ThemeProvider theme={theme}>
@@ -76,13 +81,17 @@ export default function MyApp({Component, pageProps}: AppProps) {
 
                 {!isRouteCouldBeCached && (
                     <UniversalLayout>
-                        <Component
-                            {...pageProps}
+                        {showStartupHint ?
+                            <StartupHint handleChangeStartupHint={handleChangeStartupHint}/> :
+                            <Component
+                                {...pageProps}
 
-                        />
+                            />
+                        }
                     </UniversalLayout>
                 )}
             </ThemeProvider>
         </>
-    );
+    )
+        ;
 }

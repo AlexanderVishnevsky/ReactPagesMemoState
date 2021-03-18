@@ -16,7 +16,7 @@ export default function Page2() {
     };
     return (
         <UniversalLayout>
-            <Typography variant="h5" component="h1" gutterBottom>
+            <Typography variant="h4" component="h1" gutterBottom>
                 Turn Switches and remember their position
             </Typography>
             <FormGroup row>

@@ -7,7 +7,7 @@ import CustomButton from "../components/CustomButton";
 export default function Index() {
     return (
         <UniversalLayout>
-            <Typography variant="h5" component="h1" gutterBottom>
+            <Typography variant="h4" component="h1" gutterBottom>
                 Main page with page routing
             </Typography>
             <Grid item>
