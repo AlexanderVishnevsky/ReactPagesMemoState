@@ -10,9 +10,9 @@ const StartupHint = ({handleChangeStartupHint}: { handleChangeStartupHint: () =>
             <div className={classes.hint}>
                 <Typography variant={"h6"} color={"secondary"}>💡💡💡 Important 💡💡💡</Typography>
                 <Typography className={classes.text}>
-                    Hi there! Open different forms and check how each form remembers selected values when leaving the
-                    form
-                    and returning again
+                    Hi there! Open different forms and check <br/>
+                    how each form remembers selected values  <br/>
+                    when leaving the form and returning again
                 </Typography>
                 <Button
                     variant={"outlined"}

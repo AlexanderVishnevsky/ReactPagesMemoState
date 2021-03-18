@@ -4,8 +4,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
     hint: {
         position: 'absolute',
         zIndex: theme.zIndex.tooltip,
-        width: '30vw',
-        height: '30vh',
         borderRadius: '10px',
         backgroundColor: 'rgba(37, 37, 37, 0.9);',
         padding: '20px',
@@ -15,6 +13,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
         justifyContent: 'space-between',
     },
     text: {
+        margin: '20px 0px',
         color: '#999999'
     }
 }));
